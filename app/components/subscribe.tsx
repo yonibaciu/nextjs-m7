@@ -41,12 +41,15 @@ export default function Subscribe() {
             await doSubscribe();
           }
           serviceWorker.addEventListener("statechange", async function(e) {
-            console.log("service worker statechange : ", e.target.state);
-            if (e.target.state == "activated") {
-              // use pushManger for subscribing here.
-              console.log("Just now activated - let's subscribe")
-
-              await doSubscribe();
+            if (e.target) {
+              const sw = (e.target as ServiceWorker)
+              console.log("service worker statechange : ", sw.state);
+              if (sw.state == "activated") {
+                // use pushManger for subscribing here.
+                console.log("Just now activated - let's subscribe")
+  
+                await doSubscribe();
+              }  
             }
           });
         }  
