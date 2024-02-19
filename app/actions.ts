@@ -2,8 +2,10 @@
 
 import webpush from "web-push";
 import process from "process";
+import { getRandomQuote } from "@/lib/quote";
 
-let subscriptions:Array<webpush.PushSubscription> = [];
+// subscriptions "database"
+const subscriptions:Array<webpush.PushSubscription> = [];
 
 webpush.setVapidDetails(
   "mailto:test@test1.com",
@@ -19,14 +21,16 @@ export async function subscribeToPushes(subscriptionJson: string) {
 }
 
 export async function sendPush() {
+  const quote = await getRandomQuote();
+
   const notificationPayload = {
     title: "M7 Health",
-    body: "This is a new notification",
+    body: quote['content'],
     icon: "https://m7health.ngrok.io/logo.png",
     data: {
       url: "https://m7health.ngrok.io",
     },
-    uniqueTag: Math.floor(Math.random() * 1000)
+    uniqueTag: quote['_id']
   };
 
   console.log(`Num subscriptions I am about to send a push to: ${subscriptions.length}`)
