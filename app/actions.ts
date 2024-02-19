@@ -16,7 +16,14 @@ webpush.setVapidDetails(
 export async function subscribeToPushes(subscriptionJson: string) {
   console.log('got subscribeToPushes:');
   console.log(subscriptionJson);
-  subscriptions.push(JSON.parse(subscriptionJson));
+  const subscription:webpush.PushSubscription = JSON.parse(subscriptionJson);
+
+  if (subscriptions.some((sub) => sub.endpoint == subscription.endpoint)) {
+    console.log('This endpoint is already subscribed. Doing nothing.');
+  }
+  else {
+    subscriptions.push(JSON.parse(subscriptionJson));
+  }
   return 'done';
 }
 
