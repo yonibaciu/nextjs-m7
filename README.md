@@ -1,4 +1,4 @@
-# nextjs-notify
+# nextjs-m7
 
 An example of how to do push notifications in NextJS
 
@@ -9,7 +9,7 @@ Before running the app you need to generate VAPID keys:
 web-push generate-vapid-keys
 ```
 
-## Running
+## Running locally
 
 ```
 NEXT_PUBLIC_VAPID_PUBLIC=<public vapid key> VAPID_PRIVATE=<private vapid key> npm run dev

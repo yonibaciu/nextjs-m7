@@ -1,11 +1,13 @@
 "use client";
 
 import { sendPush } from "@/app/actions";
+import { toast } from 'sonner';
 
 export default function Send() {
   async function onSend() {
     console.log('sending sendPush to server...');
     await sendPush();
+    toast.success('Asked backend to send push notification!');
     console.log('done');
   }
 

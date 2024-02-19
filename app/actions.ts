@@ -47,3 +47,11 @@ export async function sendPush() {
     console.log('done sending');  
   }
 }
+
+export async function clearSubscriptions() {
+  console.log('got clearSubscriptions');
+
+  // Remove key
+  await kv.del('subscriptions');
+  return 'done';
+}

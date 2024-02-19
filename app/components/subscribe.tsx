@@ -2,6 +2,7 @@
 
 import { subscribeToPushes } from "@/app/actions";
 import process from "process";
+import { toast } from 'sonner';
 
 export default function Subscribe() {
   async function subscribeClicked() {
@@ -17,6 +18,7 @@ export default function Subscribe() {
 
         console.log("record subscription on the backend...");
         await subscribeToPushes(JSON.stringify(subscription));
+        toast.success('Subscribed to push notifications!');
         console.log("done!!");
       }
 
