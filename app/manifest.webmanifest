@@ -1,0 +1,32 @@
+{
+  "short_name": "M7 Health",
+  "name": "M7 Health",
+  "icons": [
+    {
+      "src": "/images/maskable_icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "id": "/?source=pwa",
+  "start_url": "/?source=pwa",
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#3367D6",
+  "description": "M7 Heath - Best app ever for nurses!",
+  "screenshots": [
+    {
+      "src": "/images/screenshot1.png",
+      "type": "image/png",
+      "sizes": "654x384",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/images/screenshot2.png",
+      "type": "image/png",
+      "sizes": "335x607",
+      "form_factor": "narrow"
+    }
+  ]
+}
