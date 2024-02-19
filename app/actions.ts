@@ -2,10 +2,8 @@
 
 import webpush from "web-push";
 import process from "process";
+import { kv } from '@vercel/kv';
 import { getRandomQuote } from "@/lib/quote";
-
-// subscriptions "database"
-const subscriptions:Array<webpush.PushSubscription> = [];
 
 webpush.setVapidDetails(
   "mailto:test@test1.com",
@@ -16,14 +14,9 @@ webpush.setVapidDetails(
 export async function subscribeToPushes(subscriptionJson: string) {
   console.log('got subscribeToPushes:');
   console.log(subscriptionJson);
-  const subscription:webpush.PushSubscription = JSON.parse(subscriptionJson);
 
-  if (subscriptions.some((sub) => sub.endpoint == subscription.endpoint)) {
-    console.log('This endpoint is already subscribed. Doing nothing.');
-  }
-  else {
-    subscriptions.push(JSON.parse(subscriptionJson));
-  }
+  // Add to set (keeps it unique)
+  await kv.sadd('subscriptions', subscriptionJson);
   return 'done';
 }
 
@@ -42,9 +35,11 @@ export async function sendPush() {
     uniqueTag: quote['_id']
   };
 
-  console.log(`Num subscriptions I am about to send a push to: ${subscriptions.length}`)
+  const subscriptions:webpush.PushSubscription[] = await kv.smembers('subscriptions');
 
-  if (subscriptions.length > 0) {
+  console.log(`Num subscriptions I am about to send a push to: ${subscriptions ? subscriptions.length : 0}`);
+
+  if (subscriptions && subscriptions.length > 0) {
     const calls = subscriptions.map((subscription) => {
       return webpush.sendNotification(subscription, JSON.stringify(notificationPayload))
     })
