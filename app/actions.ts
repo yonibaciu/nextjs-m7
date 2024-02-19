@@ -3,7 +3,7 @@
 import webpush from "web-push";
 import process from "process";
 
-let subscriptions:Array<PushSubscription> = [];
+let subscriptions:Array<webpush.PushSubscription> = [];
 
 webpush.setVapidDetails(
   "mailto:test@test1.com",
