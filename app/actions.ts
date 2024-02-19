@@ -21,14 +21,16 @@ export async function subscribeToPushes(subscriptionJson: string) {
 }
 
 export async function sendPush() {
-  const quote = await getRandomQuote();
+  const quote = (await getRandomQuote())[0];
+
+  console.log(quote);
 
   const notificationPayload = {
     title: "M7 Health",
     body: quote['content'],
-    icon: "https://m7health.ngrok.io/logo.png",
+    icon: "nextjs-m7.vercel.app/images/logo.png",
     data: {
-      url: "https://m7health.ngrok.io",
+      url: "nextjs-m7.vercel.app",
     },
     uniqueTag: quote['_id']
   };
