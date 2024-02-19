@@ -16,7 +16,5 @@ NEXT_PUBLIC_VAPID_PUBLIC=<public vapid key> VAPID_PRIVATE=<private vapid key> np
 ```
 
 - Open the browser on localhost:3000
-- Hit Subscribe to enable notifications. This should show a broser popup asking for permissions to push notifications.
-- Hit Send to ask the backend to push a notification.
-
-# nextjs-m7
+- Hit Subscribe to enable notifications. This should show a browser popup (once) asking for permissions to push notifications.
+- Hit Send to ask the backend to push a notification with a random famous quote

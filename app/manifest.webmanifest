@@ -3,7 +3,7 @@
   "name": "M7 Health",
   "icons": [
     {
-      "src": "/images/maskable_icon.png",
+      "src": "/images/launchericon-512-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
