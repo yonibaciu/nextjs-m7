@@ -44,8 +44,11 @@ export async function sendPush() {
       return webpush.sendNotification(subscription, JSON.stringify(notificationPayload))
     })
     await Promise.all(calls);
-    console.log('done sending');  
+    console.log('done sending');
+    return subscriptions.length;
   }
+
+  return 0;
 }
 
 export async function clearSubscriptions() {

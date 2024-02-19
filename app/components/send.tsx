@@ -5,9 +5,10 @@ import { toast } from 'sonner';
 
 export default function Send() {
   async function onSend() {
+    toast.success('Asking server to send push notification!');
     console.log('sending sendPush to server...');
-    await sendPush();
-    toast.success('Asked backend to send push notification!');
+    const numSent:number = await sendPush();
+    toast.success(`Server sent a push notification to ${numSent} subscribers!`);
     console.log('done');
   }
 
